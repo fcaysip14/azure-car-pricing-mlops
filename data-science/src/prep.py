@@ -32,7 +32,7 @@ def main(args):  # Write the function name for the main data preparation logic
 
     # Encoding the categorical 'Type' colum
     label_encoder = LabelEncoder()
-    df['Type'] = label_encoder.fit_transform(df['Type'])
+    df['Segment'] = label_encoder.fit_transform(df['Segment'])
 
     train_df, test_df = train_test_split(df, test_size=args.test_train_ratio, random_state=42)
 
