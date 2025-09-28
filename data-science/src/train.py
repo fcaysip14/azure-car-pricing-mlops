@@ -35,7 +35,17 @@ def main(args):
 
     # Read train and test data from CSV
     train_df = pd.read_csv(Path(args.train_data)/"train.csv")
-    test_df = pd.read_csv(Path(args.test_data)/"test.csv")  
+    test_df = pd.read_csv(Path(args.test_data)/"test.csv")
+    
+    # Convert relevant columns to numeric, coercing errors
+    for col in ['Kilometers_Driven', 'Mileage', 'Engine', 'Power', 'Seats', 'price']:
+        train_df[col] = pd.to_numeric(train_df[col], errors='coerce')
+        test_df[col] = pd.to_numeric(test_df[col], errors='coerce')
+
+    # Drop rows with NaN values that resulted from coercion
+    train_df.dropna(inplace=True)
+    test_df.dropna(inplace=True)
+
     # Split the data into input(X) and output(y)
     y_train = train_df['price']
     X_train = train_df.drop(columns=['price'])
