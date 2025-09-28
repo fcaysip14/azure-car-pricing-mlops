@@ -37,10 +37,10 @@ def main(args):
     train_df = pd.read_csv(Path(args.train_data)/"train.csv")
     test_df = pd.read_csv(Path(args.test_data)/"test.csv")  
     # Split the data into input(X) and output(y)
-    y_train = train_df['Failure']
-    X_train = train_df.drop(columns=['Failure'])
-    y_test = test_df['Failure']
-    X_test = test_df.drop(columns=['Failure'])
+    y_train = train_df['Price']
+    X_train = train_df.drop(columns=['Price'])
+    y_test = test_df['']
+    X_test = test_df.drop(columns=['Price'])
     # Initialize and train a Random Forest Regressor
     model = RandomForestRegressor(criterion=args.criterion, max_depth=args.max_depth)
     model.fit(X_train, y_train)
